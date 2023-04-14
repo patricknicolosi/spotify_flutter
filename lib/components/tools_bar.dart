@@ -3,12 +3,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_flutter/providers/navigation_provider.dart';
 import 'package:spotify_flutter/screens/search_results_screen.dart';
+import 'package:spotify_flutter/screens/search_screen.dart';
 
 class ToolsBar extends StatelessWidget {
   final bool showSearchField;
-  ToolsBar({required this.showSearchField, super.key});
-
-  final TextEditingController searchEditingController = TextEditingController();
+  const ToolsBar({required this.showSearchField, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +27,19 @@ class ToolsBar extends StatelessWidget {
                   child: SizedBox(
                     width: 300,
                     child: TextField(
-                      controller: searchEditingController,
                       style: const TextStyle(color: Colors.black),
-                      onEditingComplete: () {
-                        Provider.of<NavigationProvider>(context, listen: false)
-                            .changeCurrentScreen(SearchResultsScreen(
-                          searchQuery: searchEditingController.text,
-                        ));
+                      onChanged: (value) {
+                        if (value.isEmpty) {
+                          Provider.of<NavigationProvider>(context,
+                                  listen: false)
+                              .changeCurrentScreen(const SearchScreen());
+                        } else {
+                          Provider.of<NavigationProvider>(context,
+                                  listen: false)
+                              .changeCurrentScreen(SearchResultsScreen(
+                            searchQuery: value,
+                          ));
+                        }
                       },
                       decoration: InputDecoration(
                           contentPadding:

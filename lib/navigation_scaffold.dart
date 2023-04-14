@@ -90,7 +90,7 @@ class NavigationScaffold extends StatelessWidget {
                 : const SizedBox(),
           ),
           Provider.of<NavigationProvider>(context, listen: true).showToolBar
-              ? Align(
+              ? const Align(
                   alignment: Alignment.topRight,
                   child: ToolsBar(showSearchField: true),
                 )

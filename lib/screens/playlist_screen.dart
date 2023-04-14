@@ -58,6 +58,7 @@ class PlaylistScreen extends StatelessWidget {
                                       const SizedBox(width: 10),
                                       Text(
                                         playlist.name ?? "",
+                                        maxLines: 2,
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge!
@@ -104,6 +105,7 @@ class PlaylistScreen extends StatelessWidget {
                                         const SizedBox(height: 30),
                                         Text(
                                           playlist.name ?? "",
+                                          maxLines: 2,
                                           style: Theme.of(context)
                                               .textTheme
                                               .displayLarge!
