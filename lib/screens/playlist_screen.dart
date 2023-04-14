@@ -21,7 +21,7 @@ class PlaylistScreen extends StatelessWidget {
         future: _getMainColor(playlist.images!.first.url!),
         builder: (context, snapshot) {
           return snapshot.connectionState == ConnectionState.waiting
-              ? const CircularProgressIndicator()
+              ? const Center(child: CircularProgressIndicator())
               : snapshot.hasData
                   ? NestedScrollView(
                       headerSliverBuilder:
@@ -270,8 +270,8 @@ class PlaylistScreen extends StatelessWidget {
             DataCell(
               TrackTile(
                 track: e,
-                onTap: () {
-                  Provider.of<AudioPlayerProvider>(context, listen: false)
+                onTap: () async {
+                  await Provider.of<AudioPlayerProvider>(context, listen: false)
                       .play(e);
                 },
               ),

@@ -114,8 +114,9 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                     showDuration: true,
                                     showHoverEffect: true,
                                     track: tracks[i],
-                                    onTap: () {
-                                      Provider.of<AudioPlayerProvider>(context,
+                                    onTap: () async {
+                                      await Provider.of<AudioPlayerProvider>(
+                                              context,
                                               listen: false)
                                           .play(tracks[i]);
                                     }),

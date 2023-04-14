@@ -15,7 +15,7 @@ class SpotifyApiHelper {
   late final SpotifyApiCredentials _credentials;
   late final SpotifyApi _spotify;
 
-  Future<void> init() async {
+  void init() {
     _credentials = SpotifyApiCredentials(_clientId, _clientSecret);
     _spotify = SpotifyApi(_credentials);
   }

@@ -126,7 +126,7 @@ class AudioPlayerBar extends StatelessWidget {
                       height: 10,
                       width: 440,
                       child: Slider(
-                        value: 0.1,
+                        value: 0,
                         onChanged: (value) {},
                       ),
                     ),

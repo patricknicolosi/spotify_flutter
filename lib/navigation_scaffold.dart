@@ -80,12 +80,12 @@ class NavigationScaffold extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Provider.of<AudioPlayerProvider>(context, listen: true)
-                        .track !=
+                        .currentPlayingTrack !=
                     null
                 ? AudioPlayerBar(
                     track:
                         Provider.of<AudioPlayerProvider>(context, listen: true)
-                            .track!,
+                            .currentPlayingTrack!,
                   )
                 : const SizedBox(),
           ),

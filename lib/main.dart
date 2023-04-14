@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_flutter/helpers/spotify_api_helper.dart';
+import 'package:spotify_flutter/helpers/youtube_explode_helper.dart';
 import 'package:spotify_flutter/navigation_scaffold.dart';
 import 'package:spotify_flutter/providers/audio_player_provider.dart';
 import 'package:spotify_flutter/providers/navigation_provider.dart';
@@ -35,4 +36,5 @@ void main() {
   );
 
   SpotifyApiHelper.getIstance().init();
+  YoutubeExplodeHelper.getIstance().init();
 }
