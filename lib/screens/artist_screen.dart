@@ -23,7 +23,6 @@ class _ArtistScreenState extends State<ArtistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
       body: FutureBuilder<Color>(
         future: getMainColor(widget.artist.images!.first.url!),
         builder: (context, snapshot) {
@@ -109,7 +108,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                     ),
                                     const SizedBox(height: 30),
                                     Text(
-                                      "${widget.artist.followers?.total ?? 0} ascoltatori mensili",
+                                      "${widget.artist.followers?.total ?? 0} monthly listener",
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w900,
                                       ),
@@ -186,7 +185,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Popolari",
+                                        "Popular",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: Theme.of(context)
@@ -210,7 +209,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                           ),
                                           DataColumn(
                                             label: Text(
-                                              'Titolo',
+                                              'Title',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodySmall!
@@ -228,7 +227,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                           ),
                                           DataColumn(
                                             label: Text(
-                                              'Data',
+                                              'Date added',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodySmall!
@@ -293,7 +292,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                       ),
                                       const SizedBox(height: 30),
                                       Text(
-                                        "Artisti",
+                                        "Artist",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: Theme.of(context)
@@ -331,7 +330,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                                                   .data?[index]
                                                                   .name ??
                                                               "",
-                                                          subtitle: "Artista",
+                                                          subtitle: "Artist",
                                                           onPressed: () {
                                                             Provider.of<NavigationProvider>(
                                                                     context,
@@ -353,7 +352,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                 ),
                         ),
                       ),
-                    )
+                    ).animate().fade()
                   : const SizedBox();
         },
       ),

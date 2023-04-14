@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:spotify_flutter/components/collection_card.dart';
@@ -11,19 +12,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          end: Alignment.bottomRight,
-          begin: Alignment.topLeft,
-          stops: const [0.2, 0.9],
-          colors: [
-            Colors.black.withOpacity(0.6),
-            Theme.of(context).scaffoldBackgroundColor.withOpacity(1),
-          ],
-        ),
-      ),
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 100),
           child: Column(
@@ -31,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Le playlist di Spotify",
+                "Spotify Playlists",
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
@@ -108,7 +98,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ).animate().fade(),
     );
   }
 }

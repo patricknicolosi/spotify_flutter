@@ -21,7 +21,15 @@ void main() {
             create: (context) => AudioPlayerProvider(),
           ),
         ],
-        child: const NavigationScaffold(),
+        child: LayoutBuilder(builder: (context, size) {
+          return size.minWidth < 800
+              ? const Scaffold(
+                  body: Center(
+                    child: Text("Try in a desktop"),
+                  ),
+                )
+              : const NavigationScaffold();
+        }),
       ),
     ),
   );

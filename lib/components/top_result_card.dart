@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:spotify/spotify.dart';
 
-class MostRelevantResultCard extends StatefulWidget {
+class TopResultCard extends StatefulWidget {
   final Artist artist;
   final Function onTap;
-  const MostRelevantResultCard(
-      {required this.artist, required this.onTap, super.key});
+  const TopResultCard({required this.artist, required this.onTap, super.key});
 
   @override
-  State<MostRelevantResultCard> createState() => _MostRelevantResultCardState();
+  State<TopResultCard> createState() => _TopResultCardState();
 }
 
-class _MostRelevantResultCardState extends State<MostRelevantResultCard> {
+class _TopResultCardState extends State<TopResultCard> {
   bool _isMouseHover = false;
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class _MostRelevantResultCardState extends State<MostRelevantResultCard> {
                         ),
                       ),
                     ),
-                    const Chip(label: Text("Artista")),
+                    const Chip(label: Text("Artist")),
                   ],
                 ),
                 _isMouseHover

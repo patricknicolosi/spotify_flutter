@@ -16,16 +16,17 @@ class NavigationScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<CustomNavigationRailDestination> destinations = [
       CustomNavigationRailDestination(
-        icon: const Icon(Icons.home_filled),
-        label: const Text("Home"),
+        icon: Icons.home_filled,
+        label: "Home",
+        selected: true,
         onTap: () {
           Provider.of<NavigationProvider>(context, listen: false)
               .changeCurrentScreen(const HomeScreen());
         },
       ),
       CustomNavigationRailDestination(
-        icon: const Icon(Icons.search_sharp),
-        label: const Text("Cerca"),
+        icon: Icons.search_sharp,
+        label: "Search",
         onTap: () {
           Provider.of<NavigationProvider>(context, listen: false)
               .changeCurrentScreen(const SearchScreen(),
@@ -42,7 +43,30 @@ class NavigationScaffold extends StatelessWidget {
               Expanded(
                 child: CustomNavigationRail(
                   leading: Image.asset("assets/logo.png", width: 140),
-                  trailing: null,
+                  trailing: Wrap(
+                    children: [
+                      TextButton(
+                        child: const Text("Legal"),
+                        onPressed: () {},
+                      ),
+                      TextButton(
+                        child: const Text("Privacy Center"),
+                        onPressed: () {},
+                      ),
+                      TextButton(
+                        child: const Text("Provacy Policy"),
+                        onPressed: () {},
+                      ),
+                      TextButton(
+                        child: const Text("Cookie Settings"),
+                        onPressed: () {},
+                      ),
+                      TextButton(
+                        child: const Text("About project"),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
                   destinations: destinations,
                 ),
               ),

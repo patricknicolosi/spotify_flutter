@@ -17,7 +17,6 @@ class PlaylistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
       body: FutureBuilder<Color>(
         future: _getMainColor(playlist.images!.first.url!),
         builder: (context, snapshot) {
@@ -202,7 +201,7 @@ class PlaylistScreen extends StatelessWidget {
                                       ),
                                       DataColumn(
                                         label: Text(
-                                          'Titolo',
+                                          'Title',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodySmall!
@@ -220,7 +219,7 @@ class PlaylistScreen extends StatelessWidget {
                                       ),
                                       DataColumn(
                                         label: Text(
-                                          'Data',
+                                          'Date added',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodySmall!
@@ -239,7 +238,7 @@ class PlaylistScreen extends StatelessWidget {
                                 ),
                         ),
                       ),
-                    )
+                    ).animate().fade()
                   : const SizedBox();
         },
       ),

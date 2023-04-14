@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:spotify_flutter/helpers/spotify_api_helper.dart';
 import 'package:colorlizer/colorlizer.dart' as colorlizer;
@@ -25,7 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Sfoglia tutto",
+                      "Browse all",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize:
@@ -98,7 +99,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                     ),
                   ],
-                ),
+                ).animate().fade(),
         ),
       ),
     );

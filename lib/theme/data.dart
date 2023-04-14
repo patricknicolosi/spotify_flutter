@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData theme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: Colors.black.withOpacity(0.72),
+  primarySwatch: Colors.green,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     iconSize: 35,
     backgroundColor: Color.fromRGBO(30, 215, 96, 1),

@@ -25,9 +25,23 @@ class CustomNavigationRail extends StatelessWidget {
             for (int index = 0; index < destinations.length; index++)
               ListTile(
                 minLeadingWidth: 25,
-                leading: destinations[index].icon,
-                title: destinations[index].label,
+                leading: Icon(
+                  destinations[index].icon,
+                  color:
+                      destinations[index].selected ? Colors.white : Colors.grey,
+                ),
+                title: Text(
+                  destinations[index].label,
+                  style: TextStyle(
+                      color: destinations[index].selected
+                          ? Colors.white
+                          : Colors.grey),
+                ),
                 onTap: () {
+                  for (CustomNavigationRailDestination e in destinations) {
+                    e.selected = false;
+                  }
+                  destinations[index].selected = true;
                   destinations[index].onTap();
                 },
               ),
@@ -42,10 +56,18 @@ class CustomNavigationRail extends StatelessWidget {
 }
 
 class CustomNavigationRailDestination {
-  final Icon icon;
-  final Text label;
+  final IconData icon;
+  final String label;
   final Function onTap;
+  bool selected;
 
-  const CustomNavigationRailDestination(
-      {required this.icon, required this.label, required this.onTap});
+  CustomNavigationRailDestination(
+      {required this.icon,
+      required this.label,
+      required this.onTap,
+      this.selected = false});
+
+  setSelected(bool value) {
+    selected = true;
+  }
 }

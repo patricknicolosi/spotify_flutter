@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
 import 'package:spotify/spotify.dart' as spotify;
-import 'package:spotify_flutter/components/most_relevant_result_card.dart';
+import 'package:spotify_flutter/components/top_result_card.dart';
 import 'package:spotify_flutter/components/collection_card.dart';
 import 'package:spotify_flutter/components/track_tile.dart';
 import 'package:spotify_flutter/helpers/spotify_api_helper.dart';
@@ -62,7 +63,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                       children: [
                         Expanded(
                           child: Text(
-                            "Risultato più rilevante",
+                            "Top result",
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: Theme.of(context)
@@ -74,7 +75,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                         ),
                         Expanded(
                           child: Text(
-                            "Brani",
+                            "Songs",
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: Theme.of(context)
@@ -90,7 +91,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: MostRelevantResultCard(
+                          child: TopResultCard(
                             artist: artists.first,
                             onTap: () {
                               Provider.of<NavigationProvider>(context,
@@ -125,7 +126,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                     ),
                     const SizedBox(height: 40),
                     Text(
-                      "Artisti",
+                      "Artists",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize:
@@ -160,7 +161,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                     ),
                     const SizedBox(height: 40),
                     Text(
-                      "Album",
+                      "Albums",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize:
@@ -185,7 +186,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                     ),
                     const SizedBox(height: 40),
                     Text(
-                      "Playlist",
+                      "Playlists",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize:
@@ -219,7 +220,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                   ],
                 ),
               ),
-            );
+            ).animate().fade();
           }
         },
       ),

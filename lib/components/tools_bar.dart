@@ -19,7 +19,7 @@ class ToolsBar extends StatelessWidget {
         child: AppBar(
           backgroundColor: Colors.black,
           elevation: 0,
-          toolbarHeight: 70,
+          toolbarHeight: 65,
           leadingWidth: 350,
           leading: showSearchField
               ? Padding(
@@ -39,6 +39,11 @@ class ToolsBar extends StatelessWidget {
                       decoration: InputDecoration(
                           contentPadding:
                               const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.transparent, width: 2.0),
+                            borderRadius: BorderRadius.circular(1000.0),
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(1000.0),
                           ),
@@ -52,7 +57,7 @@ class ToolsBar extends StatelessWidget {
                               .textTheme
                               .bodyMedium!
                               .copyWith(color: Colors.grey),
-                          hintText: "Cosa vuoi ascoltare?",
+                          hintText: "What do you want listen to?",
                           fillColor: Colors.white),
                     ),
                   ),
@@ -60,7 +65,7 @@ class ToolsBar extends StatelessWidget {
               : const SizedBox(),
           actions: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
               child: FloatingActionButton.extended(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
@@ -68,7 +73,7 @@ class ToolsBar extends StatelessWidget {
                 label: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "Accedi",
+                    "Log in",
                     style: TextStyle(fontWeight: FontWeight.w900),
                   ),
                 ),
