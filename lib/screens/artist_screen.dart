@@ -24,7 +24,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<Color>(
-        future: getMainColor(widget.artist.images!.first.url!),
+        future: _getMainColor(widget.artist.images!.first.url!),
         builder: (context, snapshot) {
           return snapshot.connectionState == ConnectionState.waiting
               ? const Center(child: CircularProgressIndicator())
@@ -56,7 +56,8 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       FloatingActionButton.small(
-                                        key: UniqueKey(),
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         onPressed: () {},
                                         child: const Icon(
                                             Icons.play_arrow_rounded),
@@ -144,13 +145,16 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                   child: Row(
                                     children: [
                                       FloatingActionButton(
-                                        key: UniqueKey(),
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         onPressed: () {},
                                         child: const Icon(
                                             Icons.play_arrow_rounded),
                                       ),
                                       const SizedBox(width: 15),
                                       IconButton(
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         iconSize: 30,
                                         icon: const Icon(
                                             Icons.favorite_border_outlined),
@@ -158,6 +162,8 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                       ),
                                       const SizedBox(width: 15),
                                       IconButton(
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         iconSize: 30,
                                         icon: const Icon(Icons.more_horiz),
                                         onPressed: () {},
@@ -195,53 +201,61 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                         ),
                                       ),
                                       const SizedBox(height: 30),
-                                      DataTable(
-                                        dataRowHeight: 70,
-                                        columns: [
-                                          DataColumn(
-                                            label: Text(
-                                              '#',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(color: Colors.grey),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: DataTable(
+                                          dataRowHeight: 70,
+                                          columns: [
+                                            DataColumn(
+                                              label: Text(
+                                                '#',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.grey),
+                                              ),
                                             ),
-                                          ),
-                                          DataColumn(
-                                            label: Text(
-                                              'Title',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(color: Colors.grey),
+                                            DataColumn(
+                                              label: Text(
+                                                'Title',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.grey),
+                                              ),
                                             ),
-                                          ),
-                                          DataColumn(
-                                            label: Text(
-                                              'Album',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(color: Colors.grey),
+                                            DataColumn(
+                                              label: Text(
+                                                'Album',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.grey),
+                                              ),
                                             ),
-                                          ),
-                                          DataColumn(
-                                            label: Text(
-                                              'Date added',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(color: Colors.grey),
+                                            DataColumn(
+                                              label: Text(
+                                                'Date added',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.grey),
+                                              ),
                                             ),
-                                          ),
-                                          const DataColumn(
-                                            label: Icon(
-                                              Icons.watch_later_outlined,
-                                              color: Colors.grey,
+                                            const DataColumn(
+                                              label: Icon(
+                                                Icons.watch_later_outlined,
+                                                color: Colors.grey,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                        rows: _dataTableRows(snapshot),
+                                          ],
+                                          rows: _dataTableRows(snapshot),
+                                        ),
                                       ),
                                       const SizedBox(height: 30),
                                       Text(
@@ -265,28 +279,33 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                                 ? Container()
                                                 : SizedBox(
                                                     height: 320,
-                                                    child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount:
-                                                          snapshot.data?.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return CollectionCard(
-                                                          imageUrl: snapshot
-                                                                  .data?[index]
-                                                                  .images!
-                                                                  .first
-                                                                  .url ??
-                                                              "",
-                                                          title: snapshot
-                                                                  .data?[index]
-                                                                  .name ??
-                                                              "",
-                                                          subtitle: "Album",
-                                                          onPressed: () {},
-                                                        );
-                                                      },
+                                                    child: Scrollbar(
+                                                      thumbVisibility: true,
+                                                      child: ListView.builder(
+                                                        scrollDirection:
+                                                            Axis.horizontal,
+                                                        itemCount: snapshot
+                                                            .data?.length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          return CollectionCard(
+                                                            imageUrl: snapshot
+                                                                    .data?[
+                                                                        index]
+                                                                    .images!
+                                                                    .first
+                                                                    .url ??
+                                                                "",
+                                                            title: snapshot
+                                                                    .data?[
+                                                                        index]
+                                                                    .name ??
+                                                                "",
+                                                            subtitle: "Album",
+                                                            onTap: () {},
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                       ),
@@ -312,38 +331,44 @@ class _ArtistScreenState extends State<ArtistScreen> {
                                                 ? Container()
                                                 : SizedBox(
                                                     height: 320,
-                                                    child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount:
-                                                          snapshot.data?.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return CollectionCard(
-                                                          imageUrl: snapshot
-                                                                  .data?[index]
-                                                                  .images!
-                                                                  .first
-                                                                  .url ??
-                                                              "",
-                                                          title: snapshot
-                                                                  .data?[index]
-                                                                  .name ??
-                                                              "",
-                                                          subtitle: "Artist",
-                                                          onPressed: () {
-                                                            Provider.of<NavigationProvider>(
-                                                                    context,
-                                                                    listen:
-                                                                        false)
-                                                                .changeCurrentScreen(
-                                                                    ArtistScreen(
-                                                              artist: snapshot
-                                                                  .data![index],
-                                                            ));
-                                                          },
-                                                        );
-                                                      },
+                                                    child: Scrollbar(
+                                                      thumbVisibility: true,
+                                                      child: ListView.builder(
+                                                        scrollDirection:
+                                                            Axis.horizontal,
+                                                        itemCount: snapshot
+                                                            .data?.length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          return CollectionCard(
+                                                            imageUrl: snapshot
+                                                                    .data?[
+                                                                        index]
+                                                                    .images!
+                                                                    .first
+                                                                    .url ??
+                                                                "",
+                                                            title: snapshot
+                                                                    .data?[
+                                                                        index]
+                                                                    .name ??
+                                                                "",
+                                                            subtitle: "Artist",
+                                                            onTap: () {
+                                                              Provider.of<NavigationProvider>(
+                                                                      context,
+                                                                      listen:
+                                                                          false)
+                                                                  .changeCurrentScreen(
+                                                                      ArtistScreen(
+                                                                artist: snapshot
+                                                                        .data![
+                                                                    index],
+                                                              ));
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                       ),
@@ -357,6 +382,12 @@ class _ArtistScreenState extends State<ArtistScreen> {
         },
       ),
     );
+  }
+
+  Future<Color> _getMainColor(String url) async {
+    http.Response response = await http.get(Uri.parse(url));
+    return PaletteGenerator.getAverageColor(
+        PaletteGenerator.extractPixelsColors(response.bodyBytes, 200));
   }
 
   List<DataRow> _dataTableRows(AsyncSnapshot<List<spotify.Track>?> snapshot) {
@@ -377,7 +408,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
                 track: e,
                 onTap: () async {
                   await Provider.of<AudioPlayerProvider>(context, listen: false)
-                      .play(e);
+                      .initPlayer(trackId: e.id);
                 },
               ),
             ),
@@ -404,12 +435,6 @@ class _ArtistScreenState extends State<ArtistScreen> {
       },
     ).toList();
   }
-}
-
-Future<Color> getMainColor(String url) async {
-  http.Response response = await http.get(Uri.parse(url));
-  return PaletteGenerator.getAverageColor(
-      PaletteGenerator.extractPixelsColors(response.bodyBytes, 200));
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
