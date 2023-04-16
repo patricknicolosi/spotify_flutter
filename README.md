@@ -20,7 +20,7 @@ You can test this project locally on the web by following [this guide](https://s
 
 Production will require middleware for CORS policies and retrieving audio tracks from YouTube [Related Issue](https://github.com/Hexer10/youtube_explode_dart/issues/119)
 
-**Creating a backend middleware in dart is planned**
+**Creating a middleware in dart is planned**
 
 
 # Other platforms
