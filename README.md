@@ -1,15 +1,22 @@
 # Spotify Flutter
 It is a project made for fun with Flutter Web. The ultimate aim of the project is to reproduce the UI/UX of Spotify Web and its functionality using Spotify API and Youtube API for playing tracks.
 
+# Screenshoots
+<img width="1280" alt="Screenshot 2023-04-16 alle 12 55 28" src="https://user-images.githubusercontent.com/23001470/232302492-ffa0ea4a-1f10-47e3-b502-5fa0f59593f0.png">
+<img width="1280" alt="Screenshot 2023-04-16 alle 12 54 46" src="https://user-images.githubusercontent.com/23001470/232302511-20c08ebc-c639-4770-b1ff-0bf04c79c8e5.png">
+<img width="1280" alt="Screenshot 2023-04-16 alle 12 55 11" src="https://user-images.githubusercontent.com/23001470/232302513-0a15860c-2bc5-420c-9630-407b7baeee7f.png">
+<img width="1280" alt="Screenshot 2023-04-16 alle 12 54 33" src="https://user-images.githubusercontent.com/23001470/232302498-64924aa0-ed7c-4d6f-9ae8-77a04d23d0ac.png">
+
+
 # Features
 
  - Web UI/UX ✔
  - Mobile UI/UX ❌ (planned)
  - Relevant playlists on the home page ✔
- - Search a track ✔
+ - Search track, playlist or artist ✔
  - Play single track ✔
  - Play playlist ❌ (planned)
- - Retreive tracks from category ❌ 
+ - Retreive tracks from category ❌ (not planned)
  - Login for customised feed ❌ (planned)
  
  Unplanned functionalities will not be developed for this project
