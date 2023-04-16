@@ -172,6 +172,12 @@ class _AudioPlayerBarState extends State<AudioPlayerBar> {
                                         .audioPlayer.duration?.inMilliseconds
                                         .toDouble() ??
                                     0.0,
+                                onChangeStart: (value) async {
+                                  await audioPlayerProvider.audioPlayer.pause();
+                                },
+                                onChangeEnd: (value) async {
+                                  await audioPlayerProvider.audioPlayer.play();
+                                },
                                 onChanged: (value) async {
                                   await audioPlayerProvider.audioPlayer
                                       .seek(value.milliseconds);
