@@ -22,5 +22,5 @@ Production will require middleware for CORS policies and retrieving audio tracks
 
 
 # Other platforms
-Other platforms have not yet been tested although they could potentially works. Local apps would not be restricted by the CORS policies of the web.
+The project was successfully run on the local **web** and **macos**, other platforms have not yet been tested although they could potentially works. Local apps would not be restricted by the CORS policies of the web.
 
