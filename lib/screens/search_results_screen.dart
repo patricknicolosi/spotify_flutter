@@ -118,7 +118,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                       await Provider.of<AudioPlayerProvider>(
                                               context,
                                               listen: false)
-                                          .play(tracks[i]);
+                                          .initPlayer(trackId: tracks[i].id);
                                     }),
                             ],
                           ),
@@ -146,7 +146,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             title: artists[index].name ?? "",
                             subtitle: "Artista",
                             isArtist: true,
-                            onPressed: () {
+                            onTap: () {
                               Provider.of<NavigationProvider>(context,
                                       listen: false)
                                   .changeCurrentScreen(
@@ -180,7 +180,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             imageUrl: albums[index].images!.first.url ?? "",
                             title: albums[index].name ?? "",
                             subtitle: "Album",
-                            onPressed: () {},
+                            onTap: () {},
                           );
                         },
                       ),
@@ -205,7 +205,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             imageUrl: playlists[index].images!.first.url ?? "",
                             title: playlists[index].name ?? "",
                             subtitle: "Playlist",
-                            onPressed: () {
+                            onTap: () {
                               Provider.of<NavigationProvider>(context,
                                       listen: false)
                                   .changeCurrentScreen(

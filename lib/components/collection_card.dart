@@ -5,13 +5,13 @@ class CollectionCard extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String subtitle;
-  final Function() onPressed;
+  final Function() onTap;
   final bool isArtist;
   const CollectionCard({
     required this.title,
     required this.subtitle,
     required this.imageUrl,
-    required this.onPressed,
+    required this.onTap,
     this.isArtist = false,
     super.key,
   });
@@ -38,20 +38,20 @@ class _CollectionCardState extends State<CollectionCard> {
             _isMouseHover = false;
           });
         },
-        child: GestureDetector(
-          onTap: () {
-            widget.onPressed();
-          },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
-            height: 320,
-            width: 240,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: _isMouseHover
-                  ? Colors.grey.withOpacity(0.13)
-                  : Colors.grey.withOpacity(0.05),
-            ),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          height: 320,
+          width: 240,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: _isMouseHover
+                ? Colors.grey.withOpacity(0.13)
+                : Colors.grey.withOpacity(0.05),
+          ),
+          child: InkWell(
+            onTap: () {
+              widget.onTap();
+            },
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Stack(
@@ -107,7 +107,7 @@ class _CollectionCardState extends State<CollectionCard> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(20, 60, 8, 0),
                             child: FloatingActionButton(
-                              heroTag: UniqueKey().toString(),
+                              mouseCursor: SystemMouseCursors.forbidden,
                               child: const Icon(Icons.play_arrow),
                               onPressed: () {},
                             ),

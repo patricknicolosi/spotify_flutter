@@ -50,7 +50,8 @@ class PlaylistScreen extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       FloatingActionButton.small(
-                                        key: UniqueKey(),
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         onPressed: () {},
                                         child: const Icon(
                                             Icons.play_arrow_rounded),
@@ -105,7 +106,8 @@ class PlaylistScreen extends StatelessWidget {
                                         const SizedBox(height: 30),
                                         Text(
                                           playlist.name ?? "",
-                                          maxLines: 2,
+                                          softWrap: false,
+                                          overflow: TextOverflow.ellipsis,
                                           style: Theme.of(context)
                                               .textTheme
                                               .displayLarge!
@@ -154,13 +156,16 @@ class PlaylistScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       FloatingActionButton(
-                                        key: UniqueKey(),
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         onPressed: () {},
                                         child: const Icon(
                                             Icons.play_arrow_rounded),
                                       ),
                                       const SizedBox(width: 15),
                                       IconButton(
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         iconSize: 30,
                                         icon: const Icon(
                                             Icons.favorite_border_outlined),
@@ -168,6 +173,8 @@ class PlaylistScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 15),
                                       IconButton(
+                                        mouseCursor:
+                                            SystemMouseCursors.forbidden,
                                         iconSize: 30,
                                         icon: const Icon(Icons.more_horiz),
                                         onPressed: () {},
@@ -189,53 +196,56 @@ class PlaylistScreen extends StatelessWidget {
                               : Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(20, 0, 20, 120),
-                                  child: DataTable(
-                                    dataRowHeight: 70,
-                                    columns: [
-                                      DataColumn(
-                                        label: Text(
-                                          '#',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(color: Colors.grey),
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: DataTable(
+                                      dataRowHeight: 70,
+                                      columns: [
+                                        DataColumn(
+                                          label: Text(
+                                            '#',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(color: Colors.grey),
+                                          ),
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Title',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(color: Colors.grey),
+                                        DataColumn(
+                                          label: Text(
+                                            'Title',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(color: Colors.grey),
+                                          ),
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Album',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(color: Colors.grey),
+                                        DataColumn(
+                                          label: Text(
+                                            'Album',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(color: Colors.grey),
+                                          ),
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Date added',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(color: Colors.grey),
+                                        DataColumn(
+                                          label: Text(
+                                            'Date added',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(color: Colors.grey),
+                                          ),
                                         ),
-                                      ),
-                                      const DataColumn(
-                                        label: Icon(
-                                          Icons.watch_later_outlined,
-                                          color: Colors.grey,
+                                        const DataColumn(
+                                          label: Icon(
+                                            Icons.watch_later_outlined,
+                                            color: Colors.grey,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                    rows: _dataTableRows(snapshot, context),
+                                      ],
+                                      rows: _dataTableRows(snapshot, context),
+                                    ),
                                   ),
                                 ),
                         ),
@@ -272,7 +282,7 @@ class PlaylistScreen extends StatelessWidget {
                 track: e,
                 onTap: () async {
                   await Provider.of<AudioPlayerProvider>(context, listen: false)
-                      .play(e);
+                      .initPlayer(trackId: e.id);
                 },
               ),
             ),

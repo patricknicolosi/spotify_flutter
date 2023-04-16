@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                                   snapshot.data?[index].images!.first.url ?? "",
                               title: snapshot.data?[index].name ?? "",
                               subtitle: snapshot.data?[index].description ?? "",
-                              onPressed: () {
+                              onTap: () {
                                 Provider.of<NavigationProvider>(context,
                                         listen: false)
                                     .changeCurrentScreen(
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                                   snapshot.data?[index].images!.first.url ?? "",
                               title: snapshot.data?[index].name ?? "",
                               subtitle: snapshot.data?[index].description ?? "",
-                              onPressed: () {
+                              onTap: () {
                                 Provider.of<NavigationProvider>(context,
                                         listen: false)
                                     .changeCurrentScreen(

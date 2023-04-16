@@ -69,4 +69,8 @@ class SpotifyApiHelper {
         .get(searchQuery, types: searchTypes ?? SearchType.all, market: "it")
         .first(4);
   }
+
+  Future<Track> getTrack(String trackId) async {
+    return await _spotify.tracks.get(trackId);
+  }
 }

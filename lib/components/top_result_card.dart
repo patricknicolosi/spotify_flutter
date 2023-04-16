@@ -27,18 +27,18 @@ class _TopResultCardState extends State<TopResultCard> {
           _isMouseHover = false;
         });
       },
-      child: GestureDetector(
-        onTap: () {
-          widget.onTap();
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: _isMouseHover
-                ? Colors.grey.withOpacity(0.13)
-                : Colors.grey.withOpacity(0.05),
-          ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: _isMouseHover
+              ? Colors.grey.withOpacity(0.13)
+              : Colors.grey.withOpacity(0.05),
+        ),
+        child: InkWell(
+          onTap: () {
+            widget.onTap();
+          },
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
             child: Stack(
@@ -74,6 +74,7 @@ class _TopResultCardState extends State<TopResultCard> {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(20, 140, 0, 0),
                           child: FloatingActionButton(
+                            mouseCursor: SystemMouseCursors.forbidden,
                             heroTag: UniqueKey().toString(),
                             child: const Icon(Icons.play_arrow),
                             onPressed: () {},

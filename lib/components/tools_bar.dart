@@ -72,6 +72,7 @@ class ToolsBar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
               child: FloatingActionButton.extended(
+                mouseCursor: SystemMouseCursors.forbidden,
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
                 onPressed: () {},
