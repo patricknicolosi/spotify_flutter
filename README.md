@@ -8,6 +8,10 @@ It is a project made for fun with Flutter Web. The ultimate aim of the project i
 <img width="1280" alt="Screenshot 2023-04-16 alle 12 54 33" src="https://user-images.githubusercontent.com/23001470/232302498-64924aa0-ed7c-4d6f-9ae8-77a04d23d0ac.png">
 
 
+
+https://user-images.githubusercontent.com/23001470/232305948-ed5a08aa-1c9c-4371-bc44-90c33f8f9e72.mp4
+
+
 # Features
 
  - Web UI/UX ✔
