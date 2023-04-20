@@ -3,12 +3,12 @@ import 'package:spotify_flutter/screens/home_screen.dart';
 
 class NavigationProvider extends ChangeNotifier {
   Widget currentScreen = const HomeScreen();
-  bool showToolBar = true;
+  bool showToolsBar = true;
 
-  void changeCurrentScreen(Widget newScreen, {bool? showToolBarValue}) {
+  void changeCurrentScreen(Widget newScreen, {bool? showToolsBarValue = true}) {
     currentScreen = newScreen;
-    if (showToolBarValue != null) {
-      showToolBar = showToolBarValue;
+    if (showToolsBarValue != null) {
+      showToolsBar = showToolsBarValue;
     }
     notifyListeners();
   }

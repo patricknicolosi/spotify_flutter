@@ -1,26 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_flutter/components/custom_drawer.dart';
 import 'package:spotify_flutter/providers/navigation_provider.dart';
 import 'package:spotify_flutter/screens/search_results_screen.dart';
 import 'package:spotify_flutter/screens/search_screen.dart';
+import 'package:spotify_flutter/utils/screen_utils.dart';
 
 class ToolsBar extends StatelessWidget {
-  final bool showSearchField;
-  const ToolsBar({required this.showSearchField, super.key});
+  const ToolsBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final NavigationProvider navigationProvider =
+        Provider.of<NavigationProvider>(context);
     return SizedBox(
       height: 70,
-      width: MediaQuery.of(context).size.width / 1.25,
+      width: ScreenUtils.isDesktop(context)
+          ? ScreenUtils.screenWidth(context) / 1.25
+          : ScreenUtils.screenWidth(context),
       child: Align(
         child: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: ScreenUtils.isMobile(context)
+              ? const Color.fromRGBO(61, 4, 96, 1)
+              : Colors.black,
           elevation: 0,
           toolbarHeight: 65,
-          leadingWidth: 350,
-          leading: showSearchField
+          leadingWidth: ScreenUtils.isMobile(context) ? 150 : 0,
+          leading: ScreenUtils.isMobile(context)
+              ? Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Image.asset("assets/logo.png"),
+                )
+              : const SizedBox(),
+          title: ScreenUtils.isDesktop(context)
               ? Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -69,8 +82,20 @@ class ToolsBar extends StatelessWidget {
                 )
               : const SizedBox(),
           actions: [
+            ScreenUtils.isMobile(context)
+                ? Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+                    child: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {
+                        navigationProvider
+                            .changeCurrentScreen(const SearchScreen());
+                      },
+                    ),
+                  )
+                : const SizedBox(),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+              padding: const EdgeInsets.fromLTRB(0, 10, 8, 10),
               child: FloatingActionButton.extended(
                 mouseCursor: SystemMouseCursors.forbidden,
                 backgroundColor: Colors.white,
@@ -85,6 +110,24 @@ class ToolsBar extends StatelessWidget {
                 ),
               ),
             ),
+            ScreenUtils.isMobile(context)
+                ? Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+                    child: IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              const CustomDrawer().animate().fadeIn().slideX(
+                                    begin: 1,
+                                    end: 0,
+                                  ),
+                        );
+                      },
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

@@ -7,6 +7,7 @@ import 'package:spotify_flutter/providers/audio_player_provider.dart';
 import 'package:spotify_flutter/providers/navigation_provider.dart';
 import 'package:spotify_flutter/screens/home_screen.dart';
 import 'package:spotify_flutter/screens/search_screen.dart';
+import 'package:spotify_flutter/utils/screen_utils.dart';
 
 class NavigationScaffold extends StatelessWidget {
   final Widget? child;
@@ -14,85 +15,88 @@ class NavigationScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NavigationProvider navigationProvider =
+        Provider.of<NavigationProvider>(context);
+    final AudioPlayerProvider audioPlayerProvider =
+        Provider.of<AudioPlayerProvider>(context);
+
     final List<CustomNavigationRailDestination> destinations = [
       CustomNavigationRailDestination(
         icon: Icons.home_filled,
         label: "Home",
         selected: true,
         onTap: () {
-          Provider.of<NavigationProvider>(context, listen: false)
-              .changeCurrentScreen(const HomeScreen());
+          navigationProvider.changeCurrentScreen(const HomeScreen());
         },
       ),
       CustomNavigationRailDestination(
         icon: Icons.search_sharp,
         label: "Search",
         onTap: () {
-          Provider.of<NavigationProvider>(context, listen: false)
-              .changeCurrentScreen(const SearchScreen(),
-                  showToolBarValue: true);
+          navigationProvider.changeCurrentScreen(const SearchScreen());
         },
       ),
     ];
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: CustomNavigationRail(
-                  leading: Image.asset("assets/logo.png", width: 140),
-                  trailing: Wrap(
-                    children: [
-                      TextButton(
-                        child: const Text("Legal"),
-                        onPressed: () {},
-                      ),
-                      TextButton(
-                        child: const Text("Privacy Center"),
-                        onPressed: () {},
-                      ),
-                      TextButton(
-                        child: const Text("Provacy Policy"),
-                        onPressed: () {},
-                      ),
-                      TextButton(
-                        child: const Text("Cookie Settings"),
-                        onPressed: () {},
-                      ),
-                      TextButton(
-                        child: const Text("About project"),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  destinations: destinations,
+      body: LayoutBuilder(builder: (context, screen) {
+        return Stack(
+          children: [
+            Row(
+              children: [
+                ScreenUtils.isDesktop(context)
+                    ? Expanded(
+                        child: CustomNavigationRail(
+                          leading: Image.asset("assets/logo.png", width: 140),
+                          trailing: Wrap(
+                            children: [
+                              TextButton(
+                                child: const Text("Legal"),
+                                onPressed: () {},
+                              ),
+                              TextButton(
+                                child: const Text("Privacy Center"),
+                                onPressed: () {},
+                              ),
+                              TextButton(
+                                child: const Text("Provacy Policy"),
+                                onPressed: () {},
+                              ),
+                              TextButton(
+                                child: const Text("Cookie Settings"),
+                                onPressed: () {},
+                              ),
+                              TextButton(
+                                child: const Text("About project"),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          destinations: destinations,
+                        ),
+                      )
+                    : const SizedBox(),
+                Expanded(
+                  flex: 4,
+                  child: navigationProvider.currentScreen,
                 ),
-              ),
-              Expanded(
-                flex: 4,
-                child: Provider.of<NavigationProvider>(context, listen: true)
-                    .currentScreen,
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Provider.of<AudioPlayerProvider>(context, listen: true)
-                    .tracks
-                    .isNotEmpty
-                ? const AudioPlayerBar()
-                : const SizedBox(),
-          ),
-          Provider.of<NavigationProvider>(context, listen: true).showToolBar
-              ? const Align(
-                  alignment: Alignment.topRight,
-                  child: ToolsBar(showSearchField: true),
-                )
-              : const SizedBox()
-        ],
-      ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: audioPlayerProvider.tracks.isNotEmpty
+                  ? const AudioPlayerBar()
+                  : const SizedBox(),
+            ),
+            navigationProvider.showToolsBar
+                ? const Align(
+                    alignment: Alignment.topRight,
+                    child: ToolsBar(),
+                  )
+                : const SizedBox()
+          ],
+        );
+      }),
     );
   }
 }

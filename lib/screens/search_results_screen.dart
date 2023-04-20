@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:spotify_flutter/components/top_result_card.dart';
 import 'package:spotify_flutter/components/collection_card.dart';
@@ -23,6 +22,10 @@ class SearchResultsScreen extends StatefulWidget {
 class _SearchResultsScreenState extends State<SearchResultsScreen> {
   @override
   Widget build(BuildContext context) {
+    final NavigationProvider navigationProvider =
+        Provider.of<NavigationProvider>(context);
+    final AudioPlayerProvider audioPlayerProvider =
+        Provider.of<AudioPlayerProvider>(context);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
       body: FutureBuilder<List<spotify.Page>>(
@@ -94,13 +97,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                           child: TopResultCard(
                             artist: artists.first,
                             onTap: () {
-                              Provider.of<NavigationProvider>(context,
-                                      listen: false)
-                                  .changeCurrentScreen(
+                              navigationProvider.changeCurrentScreen(
                                 ArtistScreen(
                                   artist: artists.first,
                                 ),
-                                showToolBarValue: false,
+                                showToolsBarValue: false,
                               );
                             },
                           ),
@@ -115,10 +116,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                     showHoverEffect: true,
                                     track: tracks[i],
                                     onTap: () async {
-                                      await Provider.of<AudioPlayerProvider>(
-                                              context,
-                                              listen: false)
-                                          .initPlayer(trackId: tracks[i].id);
+                                      await audioPlayerProvider.initPlayer(
+                                          trackId: tracks[i].id);
                                     }),
                             ],
                           ),
@@ -147,13 +146,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             subtitle: "Artista",
                             isArtist: true,
                             onTap: () {
-                              Provider.of<NavigationProvider>(context,
-                                      listen: false)
-                                  .changeCurrentScreen(
+                              navigationProvider.changeCurrentScreen(
                                 ArtistScreen(
                                   artist: artists.first,
                                 ),
-                                showToolBarValue: false,
+                                showToolsBarValue: false,
                               );
                             },
                           );
@@ -206,13 +203,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             title: playlists[index].name ?? "",
                             subtitle: "Playlist",
                             onTap: () {
-                              Provider.of<NavigationProvider>(context,
-                                      listen: false)
-                                  .changeCurrentScreen(
-                                      PlaylistScreen(
-                                        playlist: playlists[index],
-                                      ),
-                                      showToolBarValue: false);
+                              navigationProvider.changeCurrentScreen(
+                                  PlaylistScreen(
+                                    playlist: playlists[index],
+                                  ),
+                                  showToolsBarValue: false);
                             },
                           );
                         },

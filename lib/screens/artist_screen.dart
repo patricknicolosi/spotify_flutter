@@ -5,11 +5,11 @@ import 'package:spotify/spotify.dart' as spotify;
 import 'package:spotify_flutter/components/collection_card.dart';
 import 'package:spotify_flutter/components/track_tile.dart';
 import 'package:spotify_flutter/helpers/spotify_api_helper.dart';
-import 'package:spotify_flutter/models/palette_generator.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:spotify_flutter/providers/audio_player_provider.dart';
 import 'package:spotify_flutter/providers/navigation_provider.dart';
 import 'package:spotify_flutter/screens/search_screen.dart';
+import 'package:spotify_flutter/utils/color_utils.dart';
 
 class ArtistScreen extends StatefulWidget {
   final spotify.Artist artist;
@@ -22,9 +22,12 @@ class ArtistScreen extends StatefulWidget {
 class _ArtistScreenState extends State<ArtistScreen> {
   @override
   Widget build(BuildContext context) {
+    final navigationProvider = Provider.of<NavigationProvider>(context);
+
     return Scaffold(
       body: FutureBuilder<Color>(
-        future: _getMainColor(widget.artist.images!.first.url!),
+        future: ColorUtils.getMainColorFromNetworkImage(
+            widget.artist.images!.first.url!),
         builder: (context, snapshot) {
           return snapshot.connectionState == ConnectionState.waiting
               ? const Center(child: CircularProgressIndicator())
@@ -38,10 +41,9 @@ class _ArtistScreenState extends State<ArtistScreen> {
                           pinned: true,
                           leading: BackButton(
                             onPressed: () {
-                              Provider.of<NavigationProvider>(context,
-                                      listen: false)
-                                  .changeCurrentScreen(const SearchScreen(),
-                                      showToolBarValue: true);
+                              navigationProvider.changeCurrentScreen(
+                                  const SearchScreen(),
+                                  showToolsBarValue: true);
                             },
                           ),
                           leadingWidth: 70,
@@ -382,12 +384,6 @@ class _ArtistScreenState extends State<ArtistScreen> {
         },
       ),
     );
-  }
-
-  Future<Color> _getMainColor(String url) async {
-    http.Response response = await http.get(Uri.parse(url));
-    return PaletteGenerator.getAverageColor(
-        PaletteGenerator.extractPixelsColors(response.bodyBytes, 200));
   }
 
   List<DataRow> _dataTableRows(AsyncSnapshot<List<spotify.Track>?> snapshot) {

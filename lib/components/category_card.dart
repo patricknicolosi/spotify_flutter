@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
           children: [
             Positioned(
               top: 160.0,
-              left: 180.0,
+              left: 160.0,
               child: RotationTransition(
                 turns: const AlwaysStoppedAnimation(25 / 360),
                 child: Container(
@@ -39,7 +39,7 @@ class CategoryCard extends StatelessWidget {
                   ),
                   child: Image.network(
                     imageUrl,
-                    width: 100,
+                    width: 120,
                   ),
                 ),
               ),

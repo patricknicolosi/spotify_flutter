@@ -42,8 +42,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               MediaQuery.of(context).size.width > 600
                                   ? MediaQuery.of(context).size.width > 900
                                       ? 300
-                                      : 600
-                                  : MediaQuery.of(context).size.width,
+                                      : MediaQuery.of(context).size.width / 3
+                                  : MediaQuery.of(context).size.width / 2,
                           crossAxisSpacing: 12,
                           mainAxisSpacing: 12,
                         ),
